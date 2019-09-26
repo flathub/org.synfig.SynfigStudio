@@ -25,6 +25,8 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
+  - shared-modules/intltool/intltool-0.51.json
+
   - name: sigc++
     config-opts:
       - --disable-documentation
