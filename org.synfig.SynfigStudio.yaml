@@ -26,17 +26,12 @@ cleanup:
   - '*.a'
 modules:
   - name: envtest
-    #env:
-    #  SYNFIG_RENDERING_MAX_THREADS: 1
     build-options:
-      ldflags: "test_ld_flags"
-      #env:
-      #  LDFLAGS: hello
-      #  SYNFIG_RENDERING_MAX_THREADS: 2 
+      env:
+        SYNFIG_RENDERING_MAX_THREADS: "1" 
     buildsystem: simple
     build-commands:
-      - echo && echo && echo "\n\n SYNFIG_RENDERING_MAX_THREADS: ${SYNFIG_RENDERING_MAX_THREADS}\n\n\n"
-      - bash -c 'echo "SYNFIG_RENDERING_MAX_THREADS: ${SYNFIG_RENDERING_MAX_THREADS}"'
+      - 'echo "SYNFIG_RENDERING_MAX_THREADS: ${SYNFIG_RENDERING_MAX_THREADS}"'
       - exit 1
     sources:
       - type: archive
