@@ -213,7 +213,8 @@ modules:
   - name: synfigstudio
     build-options:
       env:
-        SYNFIG_RENDERING_THREADS: "1" 
+        SYNFIG_RENDERING_THREADS: "1"
+        FLATPAK_BUILDER_N_JOBS: "1"
     post-install:
       - sed -i 's/generic-icon name=\"sif_icon/icon name=\"org.synfig.SynfigStudio/' /app/share/mime/packages/synfigstudio.xml
       - mv /app/share/mime/packages/synfigstudio.xml /app/share/mime/packages/org.synfig.SynfigStudio.xml
