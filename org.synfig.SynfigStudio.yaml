@@ -25,6 +25,20 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
+  - name: envtest
+    env:
+      SYNFIG_RENDERING_MAX_THREADS: 1
+    build-options:
+      env:
+        SYNFIG_RENDERING_MAX_THREADS: 2 
+    buildsystem: simple
+    build-commands:
+      - echo $SYNFIG_RENDERING_MAX_THREADS
+      - exit 1
+    sources:
+      - type: archive
+        url: https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2
+        sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
   - name: sigc++
     config-opts:
       - --disable-documentation
