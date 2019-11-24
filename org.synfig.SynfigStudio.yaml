@@ -26,9 +26,10 @@ cleanup:
   - '*.a'
 modules:
   - name: envtest
-    env:
-      SYNFIG_RENDERING_MAX_THREADS: 1
+    #env:
+    #  SYNFIG_RENDERING_MAX_THREADS: 1
     build-options:
+      ldflags: "test_ld_flags"
       env:
         LDFLAGS: hello
         SYNFIG_RENDERING_MAX_THREADS: 2 
