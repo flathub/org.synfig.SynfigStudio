@@ -211,6 +211,8 @@ modules:
         sha256: 5f5f7b33483041165f9a63fe4d95eb815971c7444569e574206f6964e83cc2ef
 
   - name: synfigstudio
+    env:
+      SYNFIG_RENDERING_MAX_THREADS: 1
     build-options:
       env:
         SYNFIG_RENDERING_MAX_THREADS: 2 
