@@ -33,7 +33,7 @@ modules:
         SYNFIG_RENDERING_MAX_THREADS: 2 
     buildsystem: simple
     build-commands:
-      - printf "\n\n SYNFIG_RENDERING_MAX_THREADS: $SYNFIG_RENDERING_MAX_THREADS\n\n\n"
+      - echo && echo && echo "\n\n SYNFIG_RENDERING_MAX_THREADS: ${SYNFIG_RENDERING_MAX_THREADS}\n\n\n"
       - exit 1
     sources:
       - type: archive
