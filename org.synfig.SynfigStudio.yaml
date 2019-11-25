@@ -209,12 +209,14 @@ modules:
       - type: archive
         url: https://github.com/synfig/synfig/releases/download/v1.2.2/source-synfig-1.2.2.tar.gz
         sha256: 5f5f7b33483041165f9a63fe4d95eb815971c7444569e574206f6964e83cc2ef
+      - type: patch
+        path: synfig-1.2.2-filesystem.patch
 
   - name: synfigstudio
-    build-options:
-      env:
-        SYNFIG_RENDERING_THREADS: "1"
-        FLATPAK_BUILDER_N_JOBS: "1"
+    # env didn't use for now, stays for future references
+    #build-options:
+      #env:
+      #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
       - sed -i 's/generic-icon name=\"sif_icon/icon name=\"org.synfig.SynfigStudio/' /app/share/mime/packages/synfigstudio.xml
       - mv /app/share/mime/packages/synfigstudio.xml /app/share/mime/packages/org.synfig.SynfigStudio.xml
