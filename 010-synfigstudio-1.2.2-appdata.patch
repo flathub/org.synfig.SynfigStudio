@@ -1,0 +1,21 @@
+--- ./synfigstudio.appdata.xml.in	2018-09-14 09:33:34.000000000 +0300
++++ ./synfigstudio.appdata.xml.in.new	2019-11-26 10:51:55.132466776 +0300
+@@ -5,6 +5,7 @@
+   <metadata_license>CC0-1.0</metadata_license>
+   <project_license>GPL-3.0</project_license>
+   <name>Synfig Studio</name>
++  <summary>Create and edit 2D animations and compositions</summary>
+   <description>
+     <_p>
+    Synfig Studio is a free and open-source 2D animation software, designed as powerful industrial-strength solution for creating film-quality animation using a vector and bitmap artwork. It eliminates the need to create animation frame-by frame, allowing you to produce 2D animation of a higher quality with fewer people and resources. 
+@@ -24,8 +25,8 @@
+     </ul>
+   </description>
+   <screenshots>
+-    <screenshot height="693" width="1232" type="default">
+-      <image>https://download.tuxfamily.org/morevna/blog/2017/02/screenshot-07-16-9.png</image>
++    <screenshot width="1232" height="768" type="default">
++      <image>https://i1.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-07.png</image>
+       <_caption>Synfig Studio workspace</_caption>
+     </screenshot>
+   </screenshots>
