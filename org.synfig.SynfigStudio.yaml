@@ -155,16 +155,9 @@ modules:
         url: https://download.videolan.org/x264/snapshots/x264-snapshot-20180807-2245-stable.tar.bz2
         sha256: 1439f1a054c87965089b646e77d16e1a8bf2f9687e4dd696ac518e44c7644c2a
 
-  - name: chrpath
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
-        sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
-
   - name: ffmpeg
     config-opts:
+      - --enable-rpath
       - --enable-gpl
       - --disable-static
       - --enable-shared
@@ -174,8 +167,6 @@ modules:
       - --enable-libopus
       - --enable-libvpx
       - --enable-libx264
-    post-install:
-      - chrpath -d /app/bin/ffmpeg
     cleanup:
       - /share/ffmpeg/examples
     sources:
