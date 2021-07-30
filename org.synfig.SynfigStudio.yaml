@@ -187,16 +187,16 @@ modules:
   - name: ETL
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.1/ETL-1.4.1.tar.gz
-        sha256: ecb61942da60dca8e623af8ad03656897d10b03296e8907dd3c6c296390a074c
+        url: https://github.com/synfig/synfig/releases/download/v1.4.2/ETL-1.4.2.tar.gz
+        sha256: e54192d284df16305ddfdfcc5bdfe93e139e6db5bc283dd4bab2413ebbead7c7
 
   - name: synfig
     config-opts:
       - --with-boost=/app
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.1/synfig-1.4.1.tar.gz
-        sha256: f90f1dcff1a409bbe2bfbb2cf42b7019cf735bec3223722db2feba6e198d1bc1
+        url: https://github.com/synfig/synfig/releases/download/v1.4.2/synfig-1.4.2.tar.gz
+        sha256: e66688b908ab2f05f87cc5a364f958a1351f101ccab3b3ade33a926453002f4e
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -207,7 +207,7 @@ modules:
       - install -Dm644 /app/share/pixmaps/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.1/synfigstudio-1.4.1.tar.gz
-        sha256: af9a9b0064064907ae24a693b607dcba633a8a2cd45fa1357f61c035efd6020e
+        url: https://github.com/synfig/synfig/releases/download/v1.4.2/synfigstudio-1.4.2.tar.gz
+        sha256: 4e86d4d8def6675fc92855a411795cc4062a1669cda82535d18b48a68b4d5497
 # Lottie plugin dependency
   - python3-lxml.json
