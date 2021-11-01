@@ -30,8 +30,8 @@ modules:
       - /lib/sigc++-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.2.tar.xz
-        sha256: b1ca0253379596f9c19f070c83d362b12dfd39c0a3ea1dd813e8e21c1a097a98
+        url: http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.3.tar.xz
+        sha256: 0b68dfc6313c6cc90ac989c6d722a1bf0585ad13846e79746aa87cb265904786
 
   - name: glibmm
     config-opts:
@@ -39,10 +39,10 @@ modules:
     cleanup:
       - /lib/glibmm-*
       - /lib/giomm-*
-    sources: 
+    sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.62/glibmm-2.62.0.tar.xz
-        sha256: 36659f13cc73282392d1305858f3bbca46fbd1ce2f078cc9db8b9f79b2e93cfe
+        url: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.64/glibmm-2.64.2.tar.xz
+        sha256: a75282e58d556d9b2bb44262b6f5fb76c824ac46a25a06f527108bec86b8d4ec
 
   - name: cairomm
     config-opts:
@@ -61,8 +61,9 @@ modules:
       - /lib/pangomm-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/pangomm/2.40/pangomm-2.40.1.tar.xz
-        sha256: 9762ee2a2d5781be6797448d4dd2383ce14907159b30bc12bf6b08e7227be3af
+        # last version without `mm-common-prepare` requirement
+        url: http://ftp.gnome.org/pub/GNOME/sources/pangomm/2.42/pangomm-2.42.1.tar.xz
+        sha256: 14bf04939930870d5cfa96860ed953ad2ce07c3fd8713add4a1bfe585589f40f
 
   - name: atkmm
     config-opts:
@@ -71,8 +72,9 @@ modules:
       - /lib/atkmm-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.24/atkmm-2.24.2.tar.xz
-        sha256: ff95385759e2af23828d4056356f25376cfabc41e690ac1df055371537e458bd
+        # last version without c++17 requirement
+        url: http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.28/atkmm-2.28.0.tar.xz
+        sha256: 4c4cfc917fd42d3879ce997b463428d6982affa0fb660cafcc0bc2d9afcedd3a
 
   - name: gtkmm
     config-opts:
@@ -82,6 +84,7 @@ modules:
       - /lib/gdkmm-*
     sources:
       - type: archive
+        # last version without `mm-common-prepare` requirement
         url: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.2.tar.xz
         sha256: 6d71091bcd1863133460d4188d04102810e9123de19706fb656b7bb915b4adc3
 
@@ -92,6 +95,7 @@ modules:
       - /lib/libxml++-2.6
     sources:
       - type: archive
+        # last version without `mm-common-prepare` requirement
         url: http://ftp.gnome.org/pub/GNOME/sources/libxml++/2.40/libxml++-2.40.1.tar.xz
         sha256: 4ad4abdd3258874f61c2e2a41d08e9930677976d303653cd1670d3e9f35463e9
 
@@ -105,8 +109,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: http://www.fftw.org/fftw-3.3.8.tar.gz
-        sha256: 6113262f6e92c5bd474f2875fa1b01054c4ad5040f6b0da7c03c98821d9ae303
+        url: http://www.fftw.org/fftw-3.3.10.tar.gz
+        sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: ilmbase
     config-opts:
@@ -134,7 +138,7 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
     sources:
       - type: archive
-        url: https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.67.0/source/boost_1_67_0.tar.bz2
         sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
 
   - name: imagemagick
@@ -156,16 +160,9 @@ modules:
         url: https://download.videolan.org/x264/snapshots/x264-snapshot-20180807-2245-stable.tar.bz2
         sha256: 1439f1a054c87965089b646e77d16e1a8bf2f9687e4dd696ac518e44c7644c2a
 
-  - name: chrpath
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://alioth-archive.debian.org/releases/chrpath/chrpath/0.16/chrpath-0.16.tar.gz
-        sha256: bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
-
   - name: ffmpeg
     config-opts:
+      - --enable-rpath
       - --enable-gpl
       - --disable-static
       - --enable-shared
@@ -175,8 +172,6 @@ modules:
       - --enable-libopus
       - --enable-libvpx
       - --enable-libx264
-    post-install:
-      - chrpath -d /app/bin/ffmpeg
     cleanup:
       - /share/ffmpeg/examples
     sources:
@@ -197,16 +192,16 @@ modules:
   - name: ETL
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.0/ETL-1.4.0.tar.gz
-        sha256: d43396c0ac356114713469216a9257247c2588d5475590a46db63cf201d1a011
+        url: https://github.com/synfig/synfig/releases/download/v1.5.1/ETL-1.5.1.tar.gz
+        sha256: 125c04f1892f285febc2f9cc06f932f7708e3c9f94c3a3004cd1803197197b4a
 
   - name: synfig
     config-opts:
       - --with-boost=/app
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.0/synfig-1.4.0.tar.gz
-        sha256: 7f36d57eba9dc959e1deae89e6908585a08db7f2d9399915a46a9eff33080c9c
+        url: https://github.com/synfig/synfig/releases/download/v1.5.1/synfig-1.5.1.tar.gz
+        sha256: aa91593c28a89f269be1be9c8bd9ecca6491f9e6af26744d1c160c6553ee2ced
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -214,8 +209,10 @@ modules:
       #env:
       #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
-      - install -Dm644 /app/share/pixmaps/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
+      - install -Dm644 /app/share/synfig/icons/classic/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.0/synfigstudio-1.4.0.tar.gz
-        sha256: ca1eb1a3e2264c57974a576d1995e005079d96cee19d3dffaacded72c93fbd56
+        url: https://github.com/synfig/synfig/releases/download/v1.5.1/synfigstudio-1.5.1.tar.gz
+        sha256: 54589b83cf7e8fd5c6aee78141b564f301a7a3b0c5fa61aec6e703860d42bf5b
+# Lottie plugin dependency
+  - python3-lxml.json
