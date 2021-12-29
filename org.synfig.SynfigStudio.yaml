@@ -210,6 +210,6 @@ modules:
         url: https://github.com/synfig/synfig/releases/download/v1.4.2/synfigstudio-1.4.2.tar.gz
         sha256: 4e86d4d8def6675fc92855a411795cc4062a1669cda82535d18b48a68b4d5497
       - type: patch
-        path: 010-synfigstudio-1.5.1-fix-draw-tool-crash.patch
+        path: 010-synfigstudio-1.4.2-fix-draw-tool-distortions.patch
 # Lottie plugin dependency
   - python3-lxml.json
