@@ -1,0 +1,25 @@
+diff --git a/src/synfigapp/blineconvert.cpp b/src/synfigapp/blineconvert.cpp
+index 6ce7915ad..1fc7531e6 100644
+--- a/src/synfigapp/blineconvert.cpp
++++ b/src/synfigapp/blineconvert.cpp
+@@ -558,14 +558,14 @@ synfigapp::BLineConverter::operator()(std::list<synfig::BLinePoint>  &blinepoint
+ 
+ 		cum_dist.resize(point_cache.size()); this_dist.resize(point_cache.size());
+ 		Real d = 0;
+-		for(unsigned int i = 0; i < point_cache.size();)
++		for(unsigned int i = 0; i < point_cache.size(); i++)
+ 		{
++			p2=point_cache[i];
++
+ 			d += (this_dist[i] = (p2-p1).mag());
+ 			cum_dist[i] = d;
+ 
+ 			p1=p2;
+-			//! \todo is this legal?  it reads off the end of the vector
+-			p2=point_cache[++i];
+ 		}
+ 	}
+ 	//disteval = timer();
+-- 
+2.25.1
+
