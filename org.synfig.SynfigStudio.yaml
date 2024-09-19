@@ -2,7 +2,7 @@ app-id: org.synfig.SynfigStudio
 default-branch: beta
 desktop-file-name-prefix: "(beta) "
 runtime: org.gnome.Platform
-runtime-version: '3.38'
+runtime-version: "41"
 sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
@@ -18,8 +18,8 @@ cleanup:
   - /lib/pkgconfig
   - /share/aclocal
   - /share/man
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 modules:
   - shared-modules/intltool/intltool-0.51.json
 
@@ -131,16 +131,6 @@ modules:
         url: https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
         sha256: fd6cb3a87f8c1a233be17b94c74799e6241d50fc5efd4df75c7a4b9cf4e25ea6
 
-  - name: boost
-    buildsystem: simple
-    build-commands:
-      - ./bootstrap.sh --prefix=/app --with-libraries=system
-      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
-    sources:
-      - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.67.0/source/boost_1_67_0.tar.bz2
-        sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
-
   - name: imagemagick
     config-opts:
       - --disable-static
@@ -192,16 +182,16 @@ modules:
   - name: ETL
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.1/ETL-1.5.1.tar.gz
-        sha256: 125c04f1892f285febc2f9cc06f932f7708e3c9f94c3a3004cd1803197197b4a
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/ETL-1.5.3.tar.gz
+        sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
 
   - name: synfig
     config-opts:
       - --with-boost=/app
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.1/synfig-1.5.1.tar.gz
-        sha256: aa91593c28a89f269be1be9c8bd9ecca6491f9e6af26744d1c160c6553ee2ced
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfig-1.5.3.tar.gz
+        sha256: 913c9cee6e5ad8fd6db3b3607c5b5ae0312f9ee6720c60619e3a97da98501ea8
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -209,12 +199,15 @@ modules:
       #env:
       #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
-      - install -Dm644 /app/share/synfig/icons/classic/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
+      - install -Dm644 /app/share/synfig/icons/classic/128x128/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
+      - install -Dm644 org.synfig.SynfigStudio.svg /app/share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.1/synfigstudio-1.5.1.tar.gz
-        sha256: 54589b83cf7e8fd5c6aee78141b564f301a7a3b0c5fa61aec6e703860d42bf5b
-      - type: patch
-        path: 010-synfigstudio-1.5.1-fix-draw-tool-crash.patch
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
+        sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
+      # fix error "share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg is not a valid icon: Expected a square icon but got: 744x1052"
+      - type: file
+        path: org.synfig.SynfigStudio.svg
+
 # Lottie plugin dependency
   - python3-lxml.json
