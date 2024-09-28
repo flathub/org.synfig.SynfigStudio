@@ -186,12 +186,13 @@ modules:
         sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
 
   - name: synfig
-    config-opts:
-      - --with-boost=/app
     sources:
       - type: archive
         url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfig-1.5.3.tar.gz
         sha256: 913c9cee6e5ad8fd6db3b3607c5b5ae0312f9ee6720c60619e3a97da98501ea8
+    post-install:
+      # check if app can be runned (some libs maybe missing)
+      - /app/bin/synfig --help
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -200,14 +201,22 @@ modules:
       #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
       - install -Dm644 /app/share/synfig/icons/classic/128x128/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
-      - install -Dm644 org.synfig.SynfigStudio.svg /app/share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg
     sources:
       - type: archive
         url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
         sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
+
+  - name: synfigstudio-postinstall
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 ${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    sources:
       # fix error "share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg is not a valid icon: Expected a square icon but got: 744x1052"
       - type: file
         path: org.synfig.SynfigStudio.svg
+      - type: file
+        path: org.synfig.SynfigStudio.metainfo.xml
 
 # Lottie plugin dependency
   - python3-lxml.json

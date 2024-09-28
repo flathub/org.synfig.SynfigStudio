@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Synfig contributors -->
+<component type="desktop-application">
+  <id>org.synfig.SynfigStudio</id>
+  <launchable type="desktop-id">org.synfig.SynfigStudio.desktop</launchable>
+  <name>Synfig Studio</name>
+  <summary>Create and edit 2D animations and compositions</summary>
+  <description>
+    <p>Synfig Studio is a free and open-source 2D animation software, designed as powerful industrial-strength solution for creating film-quality animation using a vector and bitmap artwork. It eliminates the need to create animation frame-by frame, allowing you to produce 2D animation of a higher quality with fewer people and resources.</p>
+
+    <p>Features:</p>
+    <ul>
+      <li>Can manipulate vector and bitmap artwork</li>
+      <li>Automatic tweening (independent from FPS)</li>
+      <li>Multitude of layers of various types (geometry primitives, shapes, gradients, fratals)</li>
+      <li>Full-featured bone system</li>
+      <li>Filters and effects for compositing (blurs, distortions, color manipulation, masks)</li>
+      <li>All color operations use High Dynamic-Range Imaging (HDRI)</li>
+      <li>Pentablet-friendly tools</li>
+      <li>Sound support</li>
+      <li>Linking data on file or parameter-level</li>
+      <li>Automatic animation using mathematical functions</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default" environment="gnome">
+      <caption>Synfig Studio main window</caption>
+      <image type="source">https://i0.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-07.png</image>
+    </screenshot>
+    <screenshot environment="gnome">
+      <caption>Synfig Studio main window</caption>
+      <image type="source">https://i0.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-1.png</image>
+    </screenshot>
+    <screenshot environment="gnome">
+      <caption>Synfig Studio main window</caption>
+      <image type="source">https://i0.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-10.png</image>
+    </screenshot>
+    <screenshot environment="gnome">
+      <caption>Synfig Studio main window</caption>
+      <image type="source">https://i0.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-11.png</image>
+    </screenshot>
+    <screenshot environment="gnome:dark">
+      <caption>Synfig Studio main window</caption>
+      <image type="source">https://i0.wp.com/www.synfig.org/wp-content/uploads/2018/02/screenshot-14.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="1.5.3" date="2024-08-23">
+      <url type="details">https://github.com/synfig/synfig/blob/v1.5.3/ChangeLog-development.md</url>
+      <description>
+        <p>Synfig Studio version 1.5.3 delivers new features and important bugfixes for all platforms.</p>
+      </description>
+    </release>
+    <release version="1.4.5" date="2024-06-25">
+      <url type="details">https://synfig.readthedocs.io/en/latest/releases/stable/1.4.5.html</url>
+      <description>
+        <p>Synfig Studio version 1.4.5 delivers some important bugfixes for all platforms.</p>
+        <ul>
+          <li>Fixed line end distortions when using the drawing tool</li>
+          <li>Fixed an error that prevented importing images into an unsaved SIF file that had not yet been saved</li>
+          <li>Fixed an error that caused the program to crash when trying to move an object that is attached to a curve, if that curve is exported</li>
+          <li>Fixed an error when closing the program that occurred if bones were used in the active document</li>
+          <li>Fixed an error that caused the program to crash when creating curves consisting of two points that are too close to each other</li>
+          <li>Fixed a program crash when using a graphics tablet in Linux on the Wayland graphics system</li>
+          <li>Fixed a program crash when clicking on rows in the Library Panel</li>
+          <li>The "Open With History" button in the file open dialog is now only active when a file with the extension "sfg" is selected</li>
+          <li>Fixed a the GUI crash when clicking on a control point with the Graphs panel active</li>
+          <li>Pixel information about the current cursor position is now only requested if the Info panel is active</li>
+          <li>Fixed memory leak when importing PNG files</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <url type="homepage">https://synfig.org/</url>
+  <url type="help">https://wiki.synfig.org/Category:Manual</url>
+  <url type="bugtracker">https://github.com/synfig/synfig/issues</url>
+  <url type="translate">https://www.transifex.com/morevnaproject/synfig/</url>
+  <developer id="org.synfig">
+    <name>Synfig</name>
+  </developer>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>tablet</control>
+    <display_length compare="le">3840</display_length>
+  </supports>
+
+  <recommends>
+    <memory compare="ge">2048</memory> <!-- recommend at least 2GiB of memory -->
+    <display_length compare="ge">1080</display_length>
+  </recommends>
+
+  <!-- never uses the internet, even if available -->
+  <requires>
+    <internet>offline-only</internet>
+    <display_length compare="ge">768</display_length>
+  </requires>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#fafafa</color>
+    <color type="primary" scheme_preference="dark">#023b5f</color>
+  </branding>
+
+  <translation type="gettext">synfigstudio</translation>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <content_rating type="oars-1.1" />
+  <update_contact>konoplin_at_gmail.com</update_contact>
+</component>
