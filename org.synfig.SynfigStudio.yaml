@@ -1,7 +1,7 @@
 app-id: org.synfig.SynfigStudio
 default-branch: stable
 runtime: org.gnome.Platform
-runtime-version: '3.38'
+runtime-version: "41"
 sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
@@ -17,8 +17,8 @@ cleanup:
   - /lib/pkgconfig
   - /share/aclocal
   - /share/man
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 modules:
   - shared-modules/intltool/intltool-0.51.json
 
@@ -29,8 +29,8 @@ modules:
       - /lib/sigc++-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.2.tar.xz
-        sha256: b1ca0253379596f9c19f070c83d362b12dfd39c0a3ea1dd813e8e21c1a097a98
+        url: http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.3.tar.xz
+        sha256: 0b68dfc6313c6cc90ac989c6d722a1bf0585ad13846e79746aa87cb265904786
 
   - name: glibmm
     config-opts:
@@ -38,10 +38,10 @@ modules:
     cleanup:
       - /lib/glibmm-*
       - /lib/giomm-*
-    sources: 
+    sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.62/glibmm-2.62.0.tar.xz
-        sha256: 36659f13cc73282392d1305858f3bbca46fbd1ce2f078cc9db8b9f79b2e93cfe
+        url: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.64/glibmm-2.64.2.tar.xz
+        sha256: a75282e58d556d9b2bb44262b6f5fb76c824ac46a25a06f527108bec86b8d4ec
 
   - name: cairomm
     config-opts:
@@ -60,8 +60,9 @@ modules:
       - /lib/pangomm-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/pangomm/2.40/pangomm-2.40.1.tar.xz
-        sha256: 9762ee2a2d5781be6797448d4dd2383ce14907159b30bc12bf6b08e7227be3af
+        # last version without `mm-common-prepare` requirement
+        url: http://ftp.gnome.org/pub/GNOME/sources/pangomm/2.42/pangomm-2.42.1.tar.xz
+        sha256: 14bf04939930870d5cfa96860ed953ad2ce07c3fd8713add4a1bfe585589f40f
 
   - name: atkmm
     config-opts:
@@ -70,8 +71,9 @@ modules:
       - /lib/atkmm-*
     sources:
       - type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.24/atkmm-2.24.2.tar.xz
-        sha256: ff95385759e2af23828d4056356f25376cfabc41e690ac1df055371537e458bd
+        # last version without c++17 requirement
+        url: http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.28/atkmm-2.28.0.tar.xz
+        sha256: 4c4cfc917fd42d3879ce997b463428d6982affa0fb660cafcc0bc2d9afcedd3a
 
   - name: gtkmm
     config-opts:
@@ -81,6 +83,7 @@ modules:
       - /lib/gdkmm-*
     sources:
       - type: archive
+        # last version without `mm-common-prepare` requirement
         url: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.2.tar.xz
         sha256: 6d71091bcd1863133460d4188d04102810e9123de19706fb656b7bb915b4adc3
 
@@ -91,6 +94,7 @@ modules:
       - /lib/libxml++-2.6
     sources:
       - type: archive
+        # last version without `mm-common-prepare` requirement
         url: http://ftp.gnome.org/pub/GNOME/sources/libxml++/2.40/libxml++-2.40.1.tar.xz
         sha256: 4ad4abdd3258874f61c2e2a41d08e9930677976d303653cd1670d3e9f35463e9
 
@@ -104,8 +108,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: http://www.fftw.org/fftw-3.3.8.tar.gz
-        sha256: 6113262f6e92c5bd474f2875fa1b01054c4ad5040f6b0da7c03c98821d9ae303
+        url: http://www.fftw.org/fftw-3.3.10.tar.gz
+        sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: ilmbase
     config-opts:
@@ -125,16 +129,6 @@ modules:
       - type: archive
         url: https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
         sha256: fd6cb3a87f8c1a233be17b94c74799e6241d50fc5efd4df75c7a4b9cf4e25ea6
-
-  - name: boost
-    buildsystem: simple
-    build-commands:
-      - ./bootstrap.sh --prefix=/app --with-libraries=system
-      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
-    sources:
-      - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.67.0/source/boost_1_67_0.tar.bz2
-        sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
 
   - name: imagemagick
     config-opts:
@@ -187,16 +181,17 @@ modules:
   - name: ETL
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.2/ETL-1.4.2.tar.gz
-        sha256: e54192d284df16305ddfdfcc5bdfe93e139e6db5bc283dd4bab2413ebbead7c7
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/ETL-1.5.3.tar.gz
+        sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
 
   - name: synfig
-    config-opts:
-      - --with-boost=/app
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.2/synfig-1.4.2.tar.gz
-        sha256: e66688b908ab2f05f87cc5a364f958a1351f101ccab3b3ade33a926453002f4e
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfig-1.5.3.tar.gz
+        sha256: 913c9cee6e5ad8fd6db3b3607c5b5ae0312f9ee6720c60619e3a97da98501ea8
+    post-install:
+      # check if app can be runned (some libs maybe missing)
+      - /app/bin/synfig --help
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -204,12 +199,23 @@ modules:
       #env:
       #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
-      - install -Dm644 /app/share/pixmaps/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
+      - install -Dm644 /app/share/synfig/icons/classic/128x128/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.4.2/synfigstudio-1.4.2.tar.gz
-        sha256: 4e86d4d8def6675fc92855a411795cc4062a1669cda82535d18b48a68b4d5497
-      - type: patch
-        path: 010-synfigstudio-1.4.2-fix-draw-tool-distortions.patch
+        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
+        sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
+
+  - name: synfigstudio-postinstall
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 ${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    sources:
+      # fix error "share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg is not a valid icon: Expected a square icon but got: 744x1052"
+      - type: file
+        path: org.synfig.SynfigStudio.svg
+      - type: file
+        path: org.synfig.SynfigStudio.metainfo.xml
+
 # Lottie plugin dependency
   - python3-lxml.json
