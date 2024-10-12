@@ -1,7 +1,7 @@
 app-id: org.synfig.SynfigStudio
 default-branch: stable
 runtime: org.gnome.Platform
-runtime-version: "41"
+runtime-version: "46"
 sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
@@ -11,6 +11,7 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --filesystem=host
+
 cleanup:
   - /include
   - /lib/cmake
@@ -19,9 +20,11 @@ cleanup:
   - /share/man
   - "*.la"
   - "*.a"
+
 modules:
   - shared-modules/intltool/intltool-0.51.json
-  - gtkmm-3.0.yaml
+  - modules/gtkmm-3.0.yaml
+  - modules/imagemagick.yml
 
   - name: libxml++
     config-opts:
@@ -66,16 +69,6 @@ modules:
         url: https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
         sha256: fd6cb3a87f8c1a233be17b94c74799e6241d50fc5efd4df75c7a4b9cf4e25ea6
 
-  - name: imagemagick
-    config-opts:
-      - --disable-static
-    cleanup:
-      - /share/doc
-    sources:
-      - type: archive
-        url: https://github.com/ImageMagick/ImageMagick6/archive/6.9.10-8.tar.gz
-        sha256: 82b1c536906228f5021be455e7b2bfbe6af189e0a3b257a7589632e645615815
-
   - name: libx264
     config-opts:
       - --disable-cli
@@ -101,18 +94,23 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz
-        sha256: ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb
+        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
+        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: mlt
-    config-opts:
-      - --enable-gpl
-      - --enable-gpl3
-      - --disable-gtk2
+    buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/mltframework/mlt/releases/download/v6.22.1/mlt-6.22.1.tar.gz
-        sha256: a3debdf0b8811f0d20c902cc3df3d05dad7d3ff36d1db16c0a7338d0d5989998
+        url: https://github.com/mltframework/mlt/releases/download/v7.28.0/mlt-7.28.0.tar.gz
+        sha256: bc425bf9602213f5f4855b78cfbbcd43eeb78097c508588bde44415963955aa1
+        x-checker-data:
+          type: anitya
+          project-id: 11007
+          url-template: https://github.com/mltframework/mlt/archive/$version.tar.gz
 
   - name: ETL
     sources:
@@ -154,4 +152,4 @@ modules:
         path: org.synfig.SynfigStudio.metainfo.xml
 
 # Lottie plugin dependency
-  - python3-lxml.json
+  - modules/python3-lxml.yaml
