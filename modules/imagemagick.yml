@@ -1,0 +1,18 @@
+name: imagemagick
+config-opts:
+  - --enable-shared
+  - --disable-static
+  - --disable-docs
+  - --with-modules
+  - --with-threads
+sources:
+  - type: archive
+    url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-39.tar.gz
+    sha256: b2eb652d9221bdeb65772503891d8bfcfc36b3b1a2c9bb35b9d247a08965fd5d
+    x-checker-data:
+      type: anitya
+      project-id: 1372
+      stable-only: true
+      url-template: https://github.com/ImageMagick/ImageMagick/archive/$version.tar.gz
+cleanup:
+  - /bin/*-config
