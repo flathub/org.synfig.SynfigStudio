@@ -1,7 +1,7 @@
 app-id: org.synfig.SynfigStudio
 default-branch: stable
 runtime: org.gnome.Platform
-runtime-version: "47"
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
@@ -18,8 +18,8 @@ cleanup:
   - /lib/pkgconfig
   - /share/aclocal
   - /share/man
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   - shared-modules/intltool/intltool-0.51.json
@@ -94,8 +94,8 @@ modules:
       - /share/ffmpeg/examples
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz
-        sha256: 8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968
+        url: https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz
+        sha256: 733984395e0dbbe5c046abda2dc49a5544e7e0e1e2366bba849222ae9e3a03b1
         x-checker-data:
           type: anitya
           project-id: 5405
