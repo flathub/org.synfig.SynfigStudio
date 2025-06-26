@@ -6,8 +6,8 @@ cleanup:
   - /lib/gtkmm-3.0
 sources:
   - type: archive
-    url: https://download.gnome.org/sources/gtkmm/3.24/gtkmm-3.24.9.tar.xz
-    sha256: 30d5bfe404571ce566a8e938c8bac17576420eb508f1e257837da63f14ad44ce
+    url: https://download.gnome.org/sources/gtkmm/3.24/gtkmm-3.24.10.tar.xz
+    sha256: 7ab7e2266808716e26c39924ace1fb46da86c17ef39d989624c42314b32b5a76
     x-checker-data:
       type: anitya
       project-id: 311572
@@ -17,8 +17,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.6.tar.xz
-        sha256: b55c46037dbcdabc5cee3b389ea11cc3910adb68ebe883e9477847aa660862e7
+        url: https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.7.tar.xz
+        sha256: 494abfce781418259b1e9d8888c73af4de4b6f3be36cc75d9baa8baa0f2a7a39
         x-checker-data:
           type: anitya
           project-id: 13152
