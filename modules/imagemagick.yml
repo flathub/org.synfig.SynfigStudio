@@ -7,8 +7,8 @@ config-opts:
   - --with-threads
 sources:
   - type: archive
-    url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-47.tar.gz
-    sha256: 818e21a248986f15a6ba0221ab3ccbaed3d3abee4a6feb4609c6f2432a30d7ed
+    url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-2.tar.gz
+    sha256: f511deb5827b07906e0558640a436a96644949dfd6bb21b1a641b09690ac3bdc
     x-checker-data:
       type: anitya
       project-id: 1372
