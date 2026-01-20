@@ -6,8 +6,8 @@ cleanup:
   - /lib/gtkmm-3.0
 sources:
   - type: archive
-    url: https://download.gnome.org/sources/gtkmm/3.24/gtkmm-3.24.9.tar.xz
-    sha256: 30d5bfe404571ce566a8e938c8bac17576420eb508f1e257837da63f14ad44ce
+    url: https://download.gnome.org/sources/gtkmm/3.24/gtkmm-3.24.10.tar.xz
+    sha256: 7ab7e2266808716e26c39924ace1fb46da86c17ef39d989624c42314b32b5a76
     x-checker-data:
       type: anitya
       project-id: 311572
@@ -61,8 +61,8 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.7.tar.xz
-        sha256: fe02c1e5f5825940d82b56b6ec31a12c06c05c1583cfe62f934d0763e1e542b3
+        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.8.tar.xz
+        sha256: 64f11d3b95a24e2a8d4166ecff518730f79ecc27222ef41faf7c7e0340fc9329
         x-checker-data:
           type: anitya
           project-id: 369440
