@@ -47,6 +47,16 @@
   </screenshots>
 
   <releases>
+    <release version="1.5.4" date="2025-01-18">
+      <url type="details">https://github.com/synfig/synfig/blob/v1.5.4/ChangeLog-development.md</url>
+      <description>
+        <ul>
+          <li>Feature Enhancements: Several new capabilities have been introduced, such as an angle converter that supports integers, hotkeys for locking/unlocking past and future keyframes, a new 'Alpha Intersection' blending mode, and enhanced palette clipboard functionality. Additionally, initial support for SVG Text elements and Lottie Text Layers has been added.</li>
+          <li>Stability and Quality Improvements: Numerous bug fixes address critical issues including rendering artifacts in outlines, undefined behavior during undo/redo operations after value conversion, crashes related to malformed PNG imports or null devices, and various UI/UX inconsistencies. Specific fixes include improved SVG importer behavior, corrected bline tool interactions, and resolution of font rendering issues.</li>
+          <li>Performance and Code Refinements: Significant refactoring efforts have been undertaken, including the porting of several layers (Bevel, Noise gradient, HalfTone2 &amp; 3) to the more efficient Cobra rendering engine. Other improvements include optimizing code for image sequence import, enhancing parameter passing by reference, and general code style cleanups.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.5.3" date="2024-08-23">
       <url type="details">https://github.com/synfig/synfig/blob/v1.5.3/ChangeLog-development.md</url>
       <description>
@@ -74,10 +84,11 @@
     </release>
   </releases>
 
-  <url type="homepage">https://synfig.org/</url>
+  <url type="homepage">https://synfig.org</url>
   <url type="help">https://wiki.synfig.org/Category:Manual</url>
   <url type="bugtracker">https://github.com/synfig/synfig/issues</url>
-  <url type="translate">https://www.transifex.com/morevnaproject/synfig/</url>
+  <url type="translate">https://explore.transifex.com/morevnaproject/synfig/</url>
+  <url type="vcs-browser">https://github.com/synfig/synfig</url>
   <developer id="org.synfig">
     <name>Synfig</name>
   </developer>

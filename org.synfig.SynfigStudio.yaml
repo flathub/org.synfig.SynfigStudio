@@ -7,9 +7,9 @@ sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
 finish-args:
-  - --socket=x11
-  - --share=ipc
   - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
   - --socket=pulseaudio
   - --filesystem=host
 
@@ -116,14 +116,14 @@ modules:
   - name: ETL
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.3/ETL-1.5.3.tar.gz
-        sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
+        url: https://github.com/synfig/synfig/releases/download/v1.5.4/ETL-1.5.4.tar.gz
+        sha256: d9f9d162fa8a8f61ab1b9983b69180fb0e39573535dfce3b1cbb912a6ffe2d51
 
   - name: synfig
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfig-1.5.3.tar.gz
-        sha256: 913c9cee6e5ad8fd6db3b3607c5b5ae0312f9ee6720c60619e3a97da98501ea8
+        url: https://github.com/synfig/synfig/releases/download/v1.5.4/synfig-1.5.4.tar.gz
+        sha256: b8fb9d609e3aedebde7b0efa0c3de3b1fa5c4b61f5493b7f797b496a80f15fd0
     post-install:
       # check if app can be runned (some libs maybe missing)
       - /app/bin/synfig --help
@@ -137,8 +137,8 @@ modules:
       - install -Dm644 /app/share/synfig/icons/classic/128x128/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
     sources:
       - type: archive
-        url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
-        sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
+        url: https://github.com/synfig/synfig/releases/download/v1.5.4/synfigstudio-1.5.4.tar.gz
+        sha256: 83375ae002f3a0393b7e02ff842262a089161af3b21d7f3b569cad7a819c128e
 
   - name: synfigstudio-postinstall
     buildsystem: simple
