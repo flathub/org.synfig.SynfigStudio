@@ -6,7 +6,7 @@ sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
 finish-args:
-  - --socket=x11
+  - --socket=fallback-x11
   - --share=ipc
   - --socket=wayland
   - --socket=pulseaudio
