@@ -13,22 +13,9 @@ sources:
       project-id: 311572
       url-template: https://download.gnome.org/sources/gtkmm/$major.$minor/gtkmm-$version.tar.xz
 modules:
-  - name: mm-common
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.7.tar.xz
-        sha256: 494abfce781418259b1e9d8888c73af4de4b6f3be36cc75d9baa8baa0f2a7a39
-        x-checker-data:
-          type: anitya
-          project-id: 13152
-          url-template: https://download.gnome.org/sources/mm-common/$major.$minor/mm-common-$version.tar.xz
-    cleanup:
-      - '*'
 
   - name: sigc++-2
-    config-opts:
-      - --disable-documentation
+    buildsystem: meson
     sources:
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/2.12/libsigc++-2.12.1.tar.xz
@@ -39,8 +26,7 @@ modules:
           url-template: https://download.gnome.org/sources/libsigc++/$major.$minor/libsigc++-$version.tar.xz
 
   - name: cairomm
-    config-opts:
-      - --disable-documentation
+    buildsystem: meson
     cleanup:
       - /lib/cairomm-1.0
     sources:
