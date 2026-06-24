@@ -1,7 +1,7 @@
 app-id: org.synfig.SynfigStudio
 default-branch: stable
 runtime: org.gnome.Platform
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: synfigstudio
 rename-icon: synfig_icon
@@ -11,20 +11,21 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --filesystem=host
-
 cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
   - /share/aclocal
+  - /share/doc
   - /share/man
   - '*.la'
   - '*.a'
-
 modules:
   - shared-modules/intltool/intltool-0.51.json
   - modules/gtkmm-3.0.yaml
   - modules/imagemagick.yml
+# Lottie plugin dependency
+  - modules/python3-lxml.yaml
 
   - name: libxml++
     config-opts:
@@ -36,19 +37,6 @@ modules:
         # last version without `mm-common-prepare` requirement
         url: http://ftp.gnome.org/pub/GNOME/sources/libxml++/2.40/libxml++-2.40.1.tar.xz
         sha256: 4ad4abdd3258874f61c2e2a41d08e9930677976d303653cd1670d3e9f35463e9
-
-  - name: fftw
-    config-opts:
-      - --disable-static
-      - --enable-shared
-      - --disable-doc
-      - --enable-threads
-    cleanup:
-      - /bin
-    sources:
-      - type: archive
-        url: http://www.fftw.org/fftw-3.3.10.tar.gz
-        sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: ilmbase
     config-opts:
@@ -63,43 +51,10 @@ modules:
       - --disable-static
     cleanup:
       - /bin
-      - /share/doc
     sources:
       - type: archive
         url: https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
         sha256: fd6cb3a87f8c1a233be17b94c74799e6241d50fc5efd4df75c7a4b9cf4e25ea6
-
-  - name: libx264
-    config-opts:
-      - --disable-cli
-      - --enable-shared
-    sources:
-      - type: archive
-        url: https://download.videolan.org/x264/snapshots/x264-snapshot-20180807-2245-stable.tar.bz2
-        sha256: 1439f1a054c87965089b646e77d16e1a8bf2f9687e4dd696ac518e44c7644c2a
-
-  - name: ffmpeg
-    config-opts:
-      - --enable-rpath
-      - --enable-gpl
-      - --disable-static
-      - --enable-shared
-      - --disable-doc
-      - --disable-ffplay
-      - --disable-ffprobe
-      - --enable-libopus
-      - --enable-libvpx
-      - --enable-libx264
-    cleanup:
-      - /share/ffmpeg/examples
-    sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz
-        sha256: 733984395e0dbbe5c046abda2dc49a5544e7e0e1e2366bba849222ae9e3a03b1
-        x-checker-data:
-          type: anitya
-          project-id: 5405
-          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
 
   - name: mlt
     buildsystem: cmake-ninja
@@ -107,10 +62,10 @@ modules:
       - type: archive
         url: https://github.com/mltframework/mlt/releases/download/v7.28.0/mlt-7.28.0.tar.gz
         sha256: bc425bf9602213f5f4855b78cfbbcd43eeb78097c508588bde44415963955aa1
-        x-checker-data:
-          type: anitya
-          project-id: 11007
-          url-template: https://github.com/mltframework/mlt/archive/$version.tar.gz
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 11007
+        #   url-template: https://github.com/mltframework/mlt/releases/download/v$version/mlt-$version.tar.gz
 
   - name: ETL
     sources:
@@ -119,13 +74,13 @@ modules:
         sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
 
   - name: synfig
+    post-install:
+      # check if app can be runned (some libs maybe missing)
+      - /app/bin/synfig --help
     sources:
       - type: archive
         url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfig-1.5.3.tar.gz
         sha256: 913c9cee6e5ad8fd6db3b3607c5b5ae0312f9ee6720c60619e3a97da98501ea8
-    post-install:
-      # check if app can be runned (some libs maybe missing)
-      - /app/bin/synfig --help
 
   - name: synfigstudio
     # env didn't use for now, stays for future references
@@ -133,23 +88,15 @@ modules:
       #env:
       #  SYNFIG_RENDERING_THREADS: "1"
     post-install:
-      - install -Dm644 /app/share/synfig/icons/classic/128x128/sif_icon.png /app/share/icons/hicolor/128x128/mimetypes/org.synfig.SynfigStudio.png
+      - install -Dm644 ${FLATPAK_ID}.svg -t /app/share/icons/hicolor/scalable/apps/
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo/
     sources:
       - type: archive
         url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
         sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
-
-  - name: synfigstudio-postinstall
-    buildsystem: simple
-    build-commands:
-      - install -Dm644 ${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
-      - install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
-    sources:
       # fix error "share/icons/hicolor/scalable/apps/org.synfig.SynfigStudio.svg is not a valid icon: Expected a square icon but got: 744x1052"
       - type: file
         path: org.synfig.SynfigStudio.svg
       - type: file
         path: org.synfig.SynfigStudio.metainfo.xml
 
-# Lottie plugin dependency
-  - modules/python3-lxml.yaml
